@@ -1,0 +1,17 @@
+class Solution {
+    public int rob(int[] nums) {
+        return Math.max(nums[0], Math.max(robHouse(Arrays.copyOfRange(nums, 0, nums.length-1)), 
+        robHouse(Arrays.copyOfRange(nums, 1, nums.length))));
+    }
+
+    private int robHouse(int[] nums){
+        int rob1 = 0;
+        int rob2 = 0;
+        for(int n : nums){
+            int temp = Math.max(n + rob1,rob2);
+            rob1 = rob2;
+            rob2 = temp;
+        }
+        return rob2;
+    }
+}
